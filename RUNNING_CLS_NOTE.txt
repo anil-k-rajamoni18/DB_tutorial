@@ -142,14 +142,12 @@ LOADING Data  : 18-08-2023
 method-1: using text file
 ======================================
 
-mysql --local-infile=1 -u root -pDbAk@18
-set global local_infile=true
+1. mysql -u root -p
+2. set global local_infile=true
+3. again login with following cmd.
+	mysql --local-infile=1 -u root -p
 
-- again login with following cmd.
- 
-mysql --local-infile=1 -u root -p
-
-- to load text file data 
+4. To load text file data 
 LOAD DATA LOCAL INFILE 'D:\\DB\\MySQL-Tutorial\\students.txt' INTO TABLE student_t;
 
 
