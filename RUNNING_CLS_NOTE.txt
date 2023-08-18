@@ -1,8 +1,4 @@
 
-SQL VS NO SQL 
-=======================
-	
-
 DATA TYPES
 ------------------------------
 String DataTypes
@@ -42,19 +38,6 @@ studentName --> camelcase.
 CREATE TABLE demotable AS
 SELECT dept_name, dept_count
 FROM dept;
-
-
-LOADING Data
-===================
-mysql --local-infile=1 -u root -pDbAk@18
-set global local_infile=true
-
-- again login with following cmd.
- 
-mysql --local-infile=1 -u root -p
-
-- to load text file data 
-LOAD DATA LOCAL INFILE 'D:\\DB\\MySQL-Tutorial\\pets.txt' INTO TABLE pet;
 
 
 
@@ -148,3 +131,71 @@ ALTER TABLE order_t
 
 
 INSERT INTO order_t values(5,'macbook',2000.5,5,'hemanth','2023-08-05');
+
+
+
+###########################################
+LOADING Data  : 18-08-2023
+##############################################
+
+
+method-1: using text file
+======================================
+
+mysql --local-infile=1 -u root -pDbAk@18
+set global local_infile=true
+
+- again login with following cmd.
+ 
+mysql --local-infile=1 -u root -p
+
+- to load text file data 
+LOAD DATA LOCAL INFILE 'D:\\DB\\MySQL-Tutorial\\students.txt' INTO TABLE student_t;
+
+
+methods-2: using script file 
+============================================
+- we will add sql commands to be performed sequentially in script file.
+- save it with fileName.sql extension
+- run the following command and provide password
+	mysql -u root -p < students.sql
+
+- NOTE: file should be same path where we are running the command otherwise provide full file path.
+
+
+========================
+exporting data from database 
+---------------------------------
+
+1. create a empty .sql file 
+2. run the following command 
+
+mysqldump -u root -p coursedb > studentDump.sql
+
+- following command will load entire data of course into studentDump.sql
+
+====================================================
+
+
+CREATE TABLE customer_t(
+	cust_id int PRIMARY KEY ,
+	firstName varchar(20) NOT NULL,
+	lastName varchar(20),
+	city varchar(20) NOT NULL,
+	country varchar(20),
+	age int
+)
+
+1. INSERT INTO customer_t (cust_id,firstName,city) VALUES(1,'sravani','NY');
+
+2. INSERT INTO customer_t VALUES(1,'kumar','rajamoni','IND',45);
+
+
+CREATE TABLE IF NOT EXISTS students(
+	studentId int AUTO_INCREMENT PRIMARY KEY,
+	studentName varchar(20) NOT NULL,
+	enrolledCourse varchar(20) NOT NULL,
+	joinedDate date NOT NULL,
+	phoneNumber INTEGER,
+	studentAddress VARCHAR(20)
+);
